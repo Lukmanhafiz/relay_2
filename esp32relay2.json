@@ -1,0 +1,23 @@
+[
+    {
+        "id": "894ed41ac82a4e31",
+        "type": "websocket out",
+        "z": "2f25a5bb1d5ee1a5",
+        "name": "Send to ESP32",
+        "server": "",
+        "client": "351edd4493468beb",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "351edd4493468beb",
+        "type": "websocket-client",
+        "path": "ws://192.168.223.68:1880/ws/ac",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": "",
+        "headers": []
+    }
+]

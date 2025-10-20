@@ -1,0 +1,95 @@
+# ESP32 Relay Control via Node-RED & WebSocket
+
+Proyek ini bertujuan untuk mengontrol **relay** menggunakan **ESP32** yang terhubung ke **Node-RED** melalui **WebSocket**. Dengan proyek ini, kamu dapat menghidupkan dan mematikan perangkat secara real-time dari dashboard Node-RED atau aplikasi lain seperti MIT App Inventor.
+
+---
+
+## 🧩 Fitur
+- Kontrol **ON/OFF** relay secara real-time.
+- Komunikasi **dua arah** antara ESP32 dan Node-RED menggunakan WebSocket.
+- Dapat diintegrasikan dengan **MIT App Inventor** untuk kontrol dari smartphone.
+- Mudah dikonfigurasi dan dikembangkan untuk lebih banyak relay.
+
+---
+
+## 🗂️ Struktur Proyek
+
+| File | Deskripsi |
+|------|------------|
+| `relay_1.ino` | Source code Arduino untuk ESP32 yang mengatur koneksi WiFi dan kontrol relay melalui WebSocket. |
+| `esp32relay2.json` | Flow Node-RED untuk komunikasi dengan ESP32 melalui WebSocket. |
+
+---
+
+## ⚙️ Cara Instalasi
+
+### 1. Upload Program ke ESP32
+1. Buka file `relay_1.ino` menggunakan **Arduino IDE**.
+2. Pastikan sudah menginstal board **ESP32** di Arduino IDE.
+3. Edit bagian berikut dengan SSID dan password WiFi kamu:
+   ```cpp
+   const char* ssid = "Nama_WiFi";
+   const char* password = "Password_WiFi";
+   ```
+4. Upload ke board ESP32 menggunakan kabel USB.
+
+---
+
+### 2. Import Flow ke Node-RED
+1. Buka **Node-RED** di browser (biasanya `http://localhost:1880`).
+2. Klik menu **hamburger (☰)** → *Import* → pilih file `esp32relay2.json`.
+3. Pastikan alamat WebSocket di flow cocok dengan IP ESP32 kamu:
+   ```json
+   "path": "ws://192.168.xxx.xxx:1880/ws/ac"
+   ```
+4. Deploy flow.
+
+---
+
+### 3. Uji Koneksi
+- Jalankan Node-RED.
+- Lihat log Serial Monitor di Arduino IDE untuk memastikan koneksi berhasil.
+- Coba kirim pesan “on” atau “off” dari Node-RED atau MIT App Inventor.
+- Relay seharusnya merespons sesuai perintah.
+
+---
+
+## 📡 Contoh Data yang Dikirim
+Format JSON yang dikirim dari Node-RED ke ESP32:
+```json
+{ "action": "on" }
+```
+atau
+```json
+{ "action": "off" }
+```
+
+---
+
+## 🔌 Kebutuhan Hardware
+- 1x **ESP32**
+- 1x **Relay Module** (1 atau lebih channel)
+- Kabel jumper
+- Breadboard (opsional)
+- Sumber daya 5V
+
+---
+
+## 🧠 Catatan Tambahan
+- Pastikan **ESP32 dan Node-RED berada di jaringan WiFi yang sama**.
+- Jika relay tidak bekerja, cek **pin GPIO** yang digunakan dan sesuaikan di `relay_1.ino`.
+- Kamu bisa menambahkan fitur tambahan seperti:
+  - Feedback status relay ke Node-RED.
+  - Pengaturan multi-relay.
+  - Integrasi dashboard web.
+
+---
+
+## 📜 Lisensi
+Proyek ini bersifat **open-source** dan dapat dimodifikasi sesuai kebutuhan.
+
+---
+
+## ✨ Kontributor
+- **Nama:** *(tambahkan namamu di sini)*
+- **GitHub:** *(tambahkan link profilmu jika ingin)*
